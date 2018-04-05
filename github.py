@@ -138,7 +138,7 @@ Generate a token here: https://github.com/settings/tokens
 try:
     user = raw_input('Username: ')
     token = getpass.getpass('Token: ')
-    # Enter your details below and has the 2 lines above for static values
+    # Enter your details below and hash the 2 lines above for static values
     #user = 'USERNAME'
     #token = 'TOKEN'
 
