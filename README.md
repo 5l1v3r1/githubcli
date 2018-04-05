@@ -22,3 +22,20 @@ Usage:
 ```Shell
 python github.py
 ```
+
+```Shell
+Commands:
+    Global:
+    clone <url>                       | Clone a repo
+    clear                             | Clear terminal screen
+    exit/quit                         | Exit the console
+
+    Users:
+    get repos <username>              | Get all users repos
+    get starred <username>            | Get all users starred repos
+    search <user>                     | Search for a repo or user
+
+    Your account:
+    delete <repo>                     | Delete a repo (TBA)
+    create <repo>                     | Create a repo (TBA)
+```
