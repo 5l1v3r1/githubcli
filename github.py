@@ -6,7 +6,6 @@ from commands.get_repos import *
 from commands.get_starred import *
 from commands.search_user import *
 from commands.clone import *
-from commands.delete import *
 
 api_url = 'https://api.github.com/'
 
