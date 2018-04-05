@@ -1,8 +1,12 @@
 #!/usr/bin/python
 import requests, os, sys, time, webbrowser, getpass
+
+# Import commands
 from commands.get_repos import *
 from commands.get_starred import *
 from commands.search_user import *
+from commands.clone import *
+from commands.delete import *
 
 api_url = 'https://api.github.com/'
 
@@ -32,11 +36,9 @@ o.      O o    O   o   o o   O  O   o       O      o o           O
 info = '''
 \033[37mCommands:\033[0m
     \033[37mGlobal:\033[0m
-    clone <number>                    | Clone a repo
-    info <number>                     | Get repo description
+    clone <url>                       | Clone a repo
     clear                             | Clear terminal screen
     exit/quit                         | Exit the console
-    open <number>                     | Open link in webbrowser
 
     \033[37mUsers:\033[0m
     get repos <username>              | Get all users repos
@@ -44,8 +46,7 @@ info = '''
     search <user>                     | Search for a repo or user
 
     \033[37mYour account:\033[0m
-    delete <number>                   | Delete a repo
-    keys                              | List all your keys
+    delete <repo>                     | Delete a repo
 '''
 
 def menu():
@@ -68,6 +69,13 @@ def menu():
             elif opt.startswith('get starred '):
                 username = opt.split(' ')[2]
                 get_starred(api_url, user, token, username)
+            elif opt.startswith('clone '):
+                url = opt.split(' ')[1]
+                clone(url)
+            #elif opt.startswith('delete '):
+            #    repo = opt.split(' ')[1]
+            #    delete(api_url, user, token, repo)
+
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
@@ -138,7 +146,7 @@ Generate a token here: https://github.com/settings/tokens
 try:
     user = raw_input('Username: ')
     token = getpass.getpass('Token: ')
-    # Enter your details below and hash the 2 lines above for static values
+    # Enter your details below and has the 2 lines above for static values
     #user = 'USERNAME'
     #token = 'TOKEN'
 
