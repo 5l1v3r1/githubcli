@@ -23,6 +23,7 @@ Usage:
 python github.py
 ```
 
+Features:
 ```Shell
 Commands:
     Global:
