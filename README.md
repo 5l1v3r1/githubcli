@@ -9,6 +9,15 @@ Installation:
 pip install -r required.txt
 ```
 
+Note the near bottom of github.py:
+```Python
+    user = raw_input('Username: ')
+    token = getpass.getpass('Token: ')
+    # Enter your details below and has the 2 lines above for static values
+    #user = 'USERNAME'
+    #token = 'TOKEN'
+```
+
 Usage:
 ```Shell
 python github.py
