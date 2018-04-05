@@ -130,7 +130,6 @@ def my_repos():
 print('''
 Please login with your credentials below.
 
-Instead of a password you can also use you access token.
 Generate a token here: https://github.com/settings/tokens
 ''' )
 
@@ -138,7 +137,11 @@ Generate a token here: https://github.com/settings/tokens
 
 try:
     user = raw_input('Username: ')
-    token = getpass.getpass('Password/token: ')
+    token = getpass.getpass('Token: ')
+    # Enter your details below and has the 2 lines above for static values
+    #user = 'USERNAME'
+    #token = 'TOKEN'
+
 except KeyboardInterrupt:
     print('\n'); sys.exit(0)
 
