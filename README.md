@@ -74,4 +74,7 @@ def command_name(api_url, user, token, key_in_dict):
     
 # Usage:
 #command_name(api_url, user, token, "html_url")
+
+# Add on top of github.py
+#from commands.command_name import *
 ```
