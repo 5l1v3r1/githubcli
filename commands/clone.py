@@ -1,8 +1,10 @@
 import os, sys
 
 def clone(url):
-    if os.path.isdir(('./repos')):
-        os.system('git clone %s ./repos' % url)
+    git = url.split('/')[-1]
+
+    if os.path.isdir(('./repos/%s' % git)):
+        os.system('git clone %s ./repos/%s' % (url, git))
     else:
-        os.makedirs('./repos')
-        os.system('git clone %s ./repos' % url)
+        os.makedirs('./repos/%s' % git)
+        os.system('git clone %s ./repos/%s' % (url, git))

@@ -6,6 +6,7 @@ from commands.get_repos import *
 from commands.get_starred import *
 from commands.search_user import *
 from commands.clone import *
+from commands.clone_all import *
 
 api_url = 'https://api.github.com/'
 
@@ -36,6 +37,7 @@ info = '''
 \033[37mCommands:\033[0m
     \033[37mGlobal:\033[0m
     clone <url>                       | Clone a repo
+    clone all <username>              | Clone all user repos
     clear                             | Clear terminal screen
     exit/quit                         | Exit the console
 
@@ -46,6 +48,7 @@ info = '''
 
     \033[37mYour account:\033[0m
     delete <repo>                     | Delete a repo
+    create <repo>                     | Create a repo
 '''
 
 def menu():
@@ -68,6 +71,9 @@ def menu():
             elif opt.startswith('get starred '):
                 username = opt.split(' ')[2]
                 get_starred(api_url, user, token, username)
+            elif opt.startswith('clone all '):
+                username = opt.split(' ')[-1]
+                clone_all(api_url, user, token, username)
             elif opt.startswith('clone '):
                 url = opt.split(' ')[1]
                 clone(url)
