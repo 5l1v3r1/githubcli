@@ -12,6 +12,7 @@ from commands.clone import *
 from commands.clone_all import *
 from commands.delete_repo import *
 from commands.create_repo import *
+from commands.edit_repo import *
 
 api_url = 'https://api.github.com/'
 
@@ -54,6 +55,7 @@ info = '''
     \033[37mYour account:\033[0m
     delete <repo>                     | Delete a repo
     create <repo>                     | Create a repo
+    edit repo/item/string             | Valid Items: name, description, homepage, private
 '''
 
 def menu():
@@ -88,10 +90,20 @@ def menu():
             elif opt.startswith('create '):
                 repo = opt.split(' ')[1]
                 create_repo(api_url, user, token, repo)
+            elif opt.startswith('edit '):
+                repo = opt.split('/')[0][5:]
+                item = opt.split('/')[1]
+                value = opt.split('/')[2]
+                edit_repo(api_url, user, token, item, value, repo)
+                #print('%s %s %s ' % (repo, item, value))
+
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
         sys.exit(0)
+    except Exception:
+        print('\033[31m[ERROR]\033[0m Invalid input')
+        return menu()
 
 def my_followers():
     # Parameters
