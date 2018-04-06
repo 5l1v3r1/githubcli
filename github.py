@@ -49,7 +49,7 @@ info = '''
     \033[37mUsers:\033[0m
     get repos <username>              | Get all users repos
     get starred <username>            | Get all users starred repos
-    search <user>                     | Search for a repo or user
+    search <user>                     | Search for a user
 
     \033[37mYour account:\033[0m
     delete <repo>                     | Delete a repo
