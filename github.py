@@ -177,8 +177,8 @@ try:
     user = raw_input('Username: ')
     token = getpass.getpass('Token: ')
     # Enter your details below and has the 2 lines above for static values
-    #user = 'leonv024'
-    #token = '49ca4dff69f8f24df0cbabf1d1208645a14cdf33'
+    #user = 'USERNAME'
+    #token = 'TOKEN'
 
 except KeyboardInterrupt:
     print('\n'); sys.exit(0)
