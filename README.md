@@ -40,7 +40,7 @@ Commands:
     Users:
     get repos <username>              | Get all users repos
     get starred <username>            | Get all users starred repos
-    search <user>                     | Search for a repo or user
+    search <user>                     | Search for a user
 
     Your account:
     delete <repo>                     | Delete a repo
