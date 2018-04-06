@@ -28,6 +28,7 @@ Features:
 Commands:
     Global:
     clone <url>                       | Clone a repo
+    clone all <username>              | Clone a repo
     clear                             | Clear terminal screen
     exit/quit                         | Exit the console
 
