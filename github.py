@@ -1,4 +1,7 @@
 #!/usr/bin/python
+# Link to docs:
+# requests: http://docs.python-requests.org/en/master/user/quickstart/
+# API:      https://developer.github.com/v3/
 import requests, os, sys, time, webbrowser, getpass
 
 # Import commands
@@ -7,6 +10,8 @@ from commands.get_starred import *
 from commands.search_user import *
 from commands.clone import *
 from commands.clone_all import *
+from commands.delete_repo import *
+from commands.create_repo import *
 
 api_url = 'https://api.github.com/'
 
@@ -77,16 +82,16 @@ def menu():
             elif opt.startswith('clone '):
                 url = opt.split(' ')[1]
                 clone(url)
-            #elif opt.startswith('delete '):
-            #    repo = opt.split(' ')[1]
-            #    delete(api_url, user, token, repo)
-
+            elif opt.startswith('delete '):
+                repo = opt.split(' ')[1]
+                delete_repo(api_url, user, token, repo)
+            elif opt.startswith('create '):
+                repo = opt.split(' ')[1]
+                create_repo(api_url, user, token, repo)
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
         sys.exit(0)
-
-
 
 def my_followers():
     # Parameters
@@ -153,7 +158,7 @@ try:
     token = getpass.getpass('Token: ')
     # Enter your details below and has the 2 lines above for static values
     #user = 'USERNAME'
-    #token = 'TOKEN'
+    #token = 'PASSWORD'
 
 except KeyboardInterrupt:
     print('\n'); sys.exit(0)

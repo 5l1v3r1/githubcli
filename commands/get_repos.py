@@ -3,7 +3,7 @@ import requests, sys
 def get_repos(api_url, user, token, username):
     login = requests.get(api_url + 'users/' + username + '/repos', auth=(user, token))
 
-    c = 0
+    c = 1
 
     if login.status_code == 200:
         for repo in login.json():

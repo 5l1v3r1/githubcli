@@ -3,7 +3,7 @@ import requests, sys
 def get_starred(api_url, user, token, username):
     login = requests.get(api_url + 'users/' + username + '/starred', auth=(user, token))
 
-    c = 0
+    c = 1
 
     if login.status_code == 200:
         print('Starred repos by user %s' % username)
