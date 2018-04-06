@@ -13,6 +13,8 @@ from commands.clone_all import *
 from commands.delete_repo import *
 from commands.create_repo import *
 from commands.edit_repo import *
+from commands.get_followers import *
+from commands.get_following import *
 
 api_url = 'https://api.github.com/'
 
@@ -50,6 +52,8 @@ info = '''
     \033[37mUsers:\033[0m
     get repos <username>              | Get all users repos
     get starred <username>            | Get all users starred repos
+    get followers <username>          | Get all users who are following this user
+    get following <username>          | Get all users who this user is following
     search <user>                     | Search for a user
 
     \033[37mYour account:\033[0m
@@ -95,14 +99,18 @@ def menu():
                 item = opt.split('/')[1]
                 value = opt.split('/')[2]
                 edit_repo(api_url, user, token, item, value, repo)
-                #print('%s %s %s ' % (repo, item, value))
-
+            elif opt.startswith('get followers '):
+                username = opt.split(' ')[-1]
+                get_followers(api_url, user, token, username)
+            elif opt.startswith('get following '):
+                username = opt.split(' ')[-1]
+                get_following(api_url, user, token, username)
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
         sys.exit(0)
-    except Exception:
-        print('\033[31m[ERROR]\033[0m Invalid input')
+    except Exception as e:
+        print('\033[31m[ERROR]\033[0m %s' % e)
         return menu()
 
 def my_followers():
@@ -169,8 +177,8 @@ try:
     user = raw_input('Username: ')
     token = getpass.getpass('Token: ')
     # Enter your details below and has the 2 lines above for static values
-    #user = 'USERNAME'
-    #token = 'PASSWORD'
+    #user = 'leonv024'
+    #token = '49ca4dff69f8f24df0cbabf1d1208645a14cdf33'
 
 except KeyboardInterrupt:
     print('\n'); sys.exit(0)
