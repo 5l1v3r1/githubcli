@@ -2,7 +2,7 @@
 # Link to docs:
 # requests: http://docs.python-requests.org/en/master/user/quickstart/
 # API:      https://developer.github.com/v3/
-import requests, os, sys, time, webbrowser, getpass
+import requests, os, sys, time, getpass
 
 # Import commands
 from commands.get_repos import *
@@ -15,6 +15,7 @@ from commands.create_repo import *
 from commands.edit_repo import *
 from commands.get_followers import *
 from commands.get_following import *
+from commands.find_repos import *
 
 api_url = 'https://api.github.com/'
 
@@ -55,6 +56,7 @@ info = '''
     get followers <username>          | Get all users who are following this user
     get following <username>          | Get all users who this user is following
     search <user>                     | Search for a user
+    find <string>                     | Search for repositories by string
 
     \033[37mYour account:\033[0m
     delete <repo>                     | Delete a repo
@@ -105,6 +107,10 @@ def menu():
             elif opt.startswith('get following '):
                 username = opt.split(' ')[-1]
                 get_following(api_url, user, token, username)
+            elif opt.startswith('find '):
+                string = opt.replace('find ', '')
+                string = string.replace(' ', '+')
+                find_repos(api_url, user, token, string)
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
@@ -161,9 +167,6 @@ def my_repos():
         repos.append(url)
     return len(repos)
 
-
-
-
 # Login script start here
 print('''
 Please login with your credentials below.
@@ -187,8 +190,6 @@ testlogin = requests.get(api_url, auth=(user, token))
 
 if testlogin.status_code == 200:
     print('Login \033[32m[OK]\033[0m')
-
-    time.sleep(1)
 
     print(banner)
 
