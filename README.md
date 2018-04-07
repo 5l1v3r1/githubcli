@@ -33,18 +33,22 @@ Features:
 Commands:
     Global:
     clone <url>                       | Clone a repo
-    clone all <username>              | Clone a repo
+    clone all <username>              | Clone all user repos
     clear                             | Clear terminal screen
     exit/quit                         | Exit the console
 
     Users:
     get repos <username>              | Get all users repos
     get starred <username>            | Get all users starred repos
+    get followers <username>          | Get all users who are following this user
+    get following <username>          | Get all users who this user is following
     search <user>                     | Search for a user
+    find <string>                     | Search for repositories by string
 
     Your account:
     delete <repo>                     | Delete a repo
     create <repo>                     | Create a repo
+    edit repo/item/string             | Valid Items: name, description, homepage, private
 ```
 
 Base code:
