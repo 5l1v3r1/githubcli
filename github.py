@@ -16,6 +16,7 @@ from commands.edit_repo import *
 from commands.get_followers import *
 from commands.get_following import *
 from commands.find_repos import *
+from commands.profile import *
 
 api_url = 'https://api.github.com/'
 
@@ -59,6 +60,7 @@ info = '''
     find <string>                     | Search for repositories by string
 
     \033[37mYour account:\033[0m
+    profile                           | Show your profile
     delete <repo>                     | Delete a repo
     create <repo>                     | Create a repo
     edit repo/item/string             | Valid Items: name, description, homepage, private
@@ -111,6 +113,8 @@ def menu():
                 string = opt.replace('find ', '')
                 string = string.replace(' ', '+')
                 find_repos(api_url, user, token, string)
+            elif opt.startswith('profile'):
+                profile(api_url, user, token)
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
@@ -118,54 +122,6 @@ def menu():
     except Exception as e:
         print('\033[31m[ERROR]\033[0m %s' % e)
         return menu()
-
-def my_followers():
-    # Parameters
-    followers = []
-
-    # Authenticate
-    login = requests.get(api_url + 'user/followers', auth=(user, token))
-    if login.status_code == 200:
-
-        # Get all followers
-        for follower in login.json():
-            followers.append(follower)
-
-        # Count followers and return
-        return len(followers)
-    else:
-        print(error)
-
-def my_emails():
-    # Authenticate
-    login = requests.get(api_url + 'user/emails', auth=(user, token))
-
-    # Get Email
-    for email in login.json():
-        email = email['email']
-        return email
-
-def my_notifications():
-    # Parameters
-    notifications = []
-
-    login = requests.get(api_url + 'notifications', auth=(user, token))
-
-    # Get notifications
-    for notification in login.json():
-        notification.append(notification)
-    return len(notifications)
-
-
-def my_repos():
-    # Parameters
-    repos = []
-    login = requests.get(api_url + 'user/repos', auth=(user, token))
-
-    # Get notifications
-    for url in login.json():
-        repos.append(url)
-    return len(repos)
 
 # Login script start here
 print('''
@@ -192,17 +148,7 @@ if testlogin.status_code == 200:
     print('Login \033[32m[OK]\033[0m')
 
     print(banner)
-
-    print('''
-
-    User:          %s
-    Email:         %s
-    Followers:     %s
-    Notifications: %s
-    Repos:         %s
-
-    ''' % (user, my_emails(), my_followers(), my_notifications(), my_repos()))
-
+    profile(api_url, user, token)
     menu()
 else:
     print(error); sys.exit(1)
