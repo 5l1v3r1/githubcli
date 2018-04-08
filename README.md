@@ -46,9 +46,11 @@ Commands:
     find <string>                     | Search for repositories by string
 
     Your account:
+    profile                           | Show your profile
     delete <repo>                     | Delete a repo
     create <repo>                     | Create a repo
     edit repo/item/string             | Valid Items: name, description, homepage, private
+    donothitenternow                  | Do Not Hit Enter Now -> DELETES ALL REPOS !!
 ```
 
 Base code:
