@@ -16,7 +16,15 @@ def find_repos(api_url, user, token, string):
         #print(result["items"][i]["html_url"]) # Url to repo
         #print(result["items"][i]["description"]) # description of repo
 
-        print('%s %s ' % (result["items"][i]["html_url"].ljust(50), result["items"][i]["description"]))
+
+        if not result["items"][i]["description"] == None:
+            description = result["items"][i]["description"]
+            # Max characters for description
+            if len(description) >= 99:
+                description = description[:99] + '...'
+        else:
+            description = None
+        print('%s %s ' % (result["items"][i]["html_url"].ljust(50), description))
         c+=1
 
 
@@ -25,4 +33,4 @@ def find_repos(api_url, user, token, string):
     #    print('%s %s %s' % (found["name"].ljust(25), found["login"], found["html_url"]))
     #    c+=1
 
-    print('\033[32mDisplaying %i results out of %i\033[0m' % (int(c), result["total_count"]))
+    print('\033[32m\nDisplaying %i out of %i results\033[0m' % (int(c), result["total_count"]))
