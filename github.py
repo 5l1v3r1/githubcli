@@ -17,6 +17,7 @@ from commands.get_followers import *
 from commands.get_following import *
 from commands.find_repos import *
 from commands.profile import *
+from commands.delete_all import *
 
 api_url = 'https://api.github.com/'
 
@@ -64,6 +65,7 @@ info = '''
     delete <repo>                     | Delete a repo
     create <repo>                     | Create a repo
     edit repo/item/string             | Valid Items: name, description, homepage, private
+    donothitenternow                  | Do Not Hit Enter Now -> DELETES ALL REPOS !!
 '''
 
 def menu():
@@ -115,6 +117,8 @@ def menu():
                 find_repos(api_url, user, token, string)
             elif opt.startswith('profile'):
                 profile(api_url, user, token)
+            elif opt == 'donothitenternow':
+                delete_all(api_url, user, token)
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
