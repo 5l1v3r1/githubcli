@@ -20,6 +20,7 @@ from commands.profile import *
 from commands.delete_all import *
 from commands.follow import *
 from commands.block import *
+from commands.get_issues import *
 
 api_url = 'https://api.github.com/'
 
@@ -66,6 +67,7 @@ info = '''
     block <username>                  | Block this user
     unblock <username>                | Unblock this user
     blocks                            | Show all blocked users
+    get issues <username> <repo>      | Show issues for this repo
 
     \033[37mYour account:\033[0m
     profile                           | Show your profile
@@ -140,6 +142,10 @@ def menu():
                 unblock(api_url, user, token, username)
             elif opt == 'blocks':
                 blocks(api_url, user, token)
+            elif opt.startswith('get issues '):
+                owner = opt.split(' ')[2]
+                repo = opt.split(' ')[3]
+                get_issues(api_url, user, token, owner, repo)
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
