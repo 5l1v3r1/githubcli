@@ -29,7 +29,8 @@ python github.py
 ```
 
 Features:
-```ShellCommands:
+```Shell
+Commands:
     Global:
     clone <url>                       | Clone a repo
     clone all <username>              | Clone all user repos
@@ -41,6 +42,7 @@ Features:
     get starred <username>            | Get all users starred repos
     get followers <username>          | Get all users who are following this user
     get following <username>          | Get all users who this user is following
+    get issues <username> <repo>      | Show issues for this repo
     search <user>                     | Search for a user
     find <string>                     | Search for repositories by string
     follow <username>                 | Follow this user
