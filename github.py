@@ -60,6 +60,7 @@ info = '''
     get starred <username>            | Get all users starred repos
     get followers <username>          | Get all users who are following this user
     get following <username>          | Get all users who this user is following
+    get issues <username> <repo>      | Show issues for this repo
     search <user>                     | Search for a user
     find <string>                     | Search for repositories by string
     follow <username>                 | Follow this user
@@ -67,7 +68,6 @@ info = '''
     block <username>                  | Block this user
     unblock <username>                | Unblock this user
     blocks                            | Show all blocked users
-    get issues <username> <repo>      | Show issues for this repo
 
     \033[37mYour account:\033[0m
     profile                           | Show your profile
