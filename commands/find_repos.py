@@ -27,10 +27,4 @@ def find_repos(api_url, user, token, string):
         print('%s %s ' % (result["items"][i]["html_url"].ljust(50), description))
         c+=1
 
-
-
-    #for found in login.json():
-    #    print('%s %s %s' % (found["name"].ljust(25), found["login"], found["html_url"]))
-    #    c+=1
-
     print('\033[32m\nDisplaying %i out of %i results\033[0m' % (int(c), result["total_count"]))

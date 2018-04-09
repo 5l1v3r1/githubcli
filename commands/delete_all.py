@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# This is most likely the stupidest thing I ever coded.
+# This is most likely the stupidest thing I have ever coded.
 
 import requests
 

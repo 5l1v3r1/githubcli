@@ -18,6 +18,8 @@ from commands.get_following import *
 from commands.find_repos import *
 from commands.profile import *
 from commands.delete_all import *
+from commands.follow import *
+from commands.block import *
 
 api_url = 'https://api.github.com/'
 
@@ -59,6 +61,11 @@ info = '''
     get following <username>          | Get all users who this user is following
     search <user>                     | Search for a user
     find <string>                     | Search for repositories by string
+    follow <username>                 | Follow this user
+    unfollow <username>               | Unfollow this user
+    block <username>                  | Block this user
+    unblock <username>                | Unblock this user
+    blocks                            | Show all blocked users
 
     \033[37mYour account:\033[0m
     profile                           | Show your profile
@@ -71,7 +78,7 @@ info = '''
 def menu():
     try:
         while True:
-            opt = raw_input('[#?] ')
+            opt = raw_input('[github] > ')
 
             if opt == '?' or opt == 'help':
                 print(info)
@@ -119,6 +126,20 @@ def menu():
                 profile(api_url, user, token)
             elif opt == 'donothitenternow':
                 delete_all(api_url, user, token)
+            elif opt.startswith('follow '):
+                username = opt.split(' ')[1]
+                follow(api_url, user, token, username)
+            elif opt.startswith('unfollow '):
+                username = opt.split(' ')[1]
+                unfollow(api_url, user, token, username)
+            elif opt.startswith('block '):
+                username = opt.split(' ')[1]
+                block(api_url, user, token, username)
+            elif opt.startswith('unblock '):
+                username = opt.split(' ')[1]
+                unblock(api_url, user, token, username)
+            elif opt == 'blocks':
+                blocks(api_url, user, token)
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
