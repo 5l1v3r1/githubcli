@@ -2,7 +2,7 @@
 # Link to docs:
 # requests: http://docs.python-requests.org/en/master/user/quickstart/
 # API:      https://developer.github.com/v3/
-import requests, os, sys, time, getpass
+import requests, os, sys, time, getpass, readline
 
 # Import commands
 from commands.get_repos import *
