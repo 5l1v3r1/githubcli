@@ -29,10 +29,6 @@ def blocks(api_url, user, token):
     print('\033[34m{0[0]} {0[1]} {0[2]}\033[0m'.format(header))
 
     for i in range(len(data)):
-        print('%s %s %s' % (data[i]["login"].ljust(22), data[i]["html_url"].ljust(38), data[i]["site_admin"]))
+        print('%s %s %s' % (data[i]["login"].ljust(25), data[i]["html_url"].ljust(35), data[i]["site_admin"]))
         c+=1
     print('\033[32mFound %i blocked users\033[0m' % int(c))
-
-    #for blocked in login.json():
-    #    print('%s %s %s' % (blocked["login"].ljust(22), blocked["html_url"].ljust(38), blocked["site_admin"]))
-    #    c+=1

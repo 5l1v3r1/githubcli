@@ -19,7 +19,7 @@ def get_repos(api_url, user, token, username):
             else:
                 description = None
 
-            print('%s %s %s' % (name.ljust(32), repo["html_url"].ljust(50), description))
+            print('%s %s %s' % (name.ljust(35), repo["html_url"].ljust(50), description))
 
             c+=1
         print('\033[32mFound %i results\033[0m' % int(c))

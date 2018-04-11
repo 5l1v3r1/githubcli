@@ -9,6 +9,6 @@ def get_followers(api_url, user, token, username):
     print('\033[34m{0[0]} {0[1]} {0[2]}\033[0m'.format(header))
 
     for follower in login.json():
-        print('%s %s %s' % (follower["login"].ljust(22), follower["html_url"].ljust(38), follower["site_admin"]))
+        print('%s %s %s' % (follower["login"].ljust(25), follower["html_url"].ljust(35), follower["site_admin"]))
         c+=1
     print('\033[32mFound %i results\033[0m' % int(c))
