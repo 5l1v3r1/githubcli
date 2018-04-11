@@ -78,7 +78,6 @@ info = '''
     delete <repo>                     | Delete a repo
     create <repo>                     | Create a repo
     edit repo/item/string             | Valid Items: name, description, homepage, private
-    lock <username> <repo> <number>   | Lock an issue
     donothitenternow                  | Do Not Hit Enter Now -> DELETES ALL REPOS !!
 '''
 
