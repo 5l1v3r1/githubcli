@@ -2,7 +2,7 @@
 # Link to docs:
 # requests: http://docs.python-requests.org/en/master/user/quickstart/
 # API:      https://developer.github.com/v3/
-import requests, os, sys, time, getpass, readline
+import requests, os, sys, time, getpass, readline, hashlib
 
 # Import commands
 from commands.get_repos import *
@@ -22,6 +22,7 @@ from commands.follow import *
 from commands.block import *
 from commands.get_issues import *
 from commands.get_commits import *
+from commands.star import *
 
 api_url = 'https://api.github.com/'
 
@@ -70,12 +71,14 @@ info = '''
     block <username>                  | Block this user
     unblock <username>                | Unblock this user
     blocks                            | Show all blocked users
+    star/unstar <username> <repo>     | Star or unstar a users repo
 
     \033[37mYour account:\033[0m
     profile                           | Show your profile
     delete <repo>                     | Delete a repo
     create <repo>                     | Create a repo
     edit repo/item/string             | Valid Items: name, description, homepage, private
+    lock <username> <repo> <number>   | Lock an issue
     donothitenternow                  | Do Not Hit Enter Now -> DELETES ALL REPOS !!
 '''
 
@@ -109,6 +112,10 @@ def menu():
             elif opt.startswith('delete '):
                 repo = opt.split(' ')[1]
                 delete_repo(api_url, user, token, repo)
+            elif opt.startswith('create issue '):
+                username = opt.split(' ')[2]
+                repo = opt.split(' ')[3]
+                create_issue(api_url, user, token, username, repo)
             elif opt.startswith('create '):
                 repo = opt.split(' ')[1]
                 create_repo(api_url, user, token, repo)
@@ -153,6 +160,14 @@ def menu():
                 username = opt.split(' ')[2]
                 repo = opt.split(' ')[3]
                 get_commits(api_url, token, username, repo)
+            elif opt.startswith('star '):
+                username = opt.split(' ')[1]
+                repo = opt.split(' ')[2]
+                star(api_url, user, token, username, repo)
+            elif opt.startswith('unstar '):
+                username = opt.split(' ')[1]
+                repo = opt.split(' ')[2]
+                unstar(api_url, user, token, username, repo)
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
@@ -185,6 +200,7 @@ if testlogin.status_code == 200:
 
     print(banner)
     profile(api_url, user, token)
+
     menu()
 else:
     print(error); sys.exit(1)
