@@ -1,5 +1,5 @@
 ![alt text](http://leonvoerman.nl/coding/githubapi.png)
-# github.py v0.1.4
+# github.py v0.1.5
 > Feel free to request more commands! 
 > I'll be happy to add them in the future.
 
@@ -43,6 +43,7 @@ Commands:
     get followers <username>          | Get all users who are following this user
     get following <username>          | Get all users who this user is following
     get issues <username> <repo>      | Show issues for this repo
+    get commits <username> <repo>     | Show all commits for this repo
     search <user>                     | Search for a user
     find <string>                     | Search for repositories by string
     follow <username>                 | Follow this user
