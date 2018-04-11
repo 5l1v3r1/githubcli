@@ -1,9 +1,4 @@
 import requests, sys, os
-# Blocking users is broken?
-# Blocking users return this message:
-# If you would like to help us test the User blocking api during its preview period,
-# you must specify a custom media type in the 'Accept' header."
-#
 
 def block(api_url, user, token, username):
     headers = {"Accept": "application/vnd.github.giant-sentry-fist-preview+json"}
