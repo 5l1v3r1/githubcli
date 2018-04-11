@@ -51,6 +51,7 @@ Commands:
     block <username>                  | Block this user
     unblock <username>                | Unblock this user
     blocks                            | Show all blocked users
+    star/unstar <username> <repo>     | Star or unstar a users repo
 
     Your account:
     profile                           | Show your profile
@@ -58,6 +59,7 @@ Commands:
     create <repo>                     | Create a repo
     edit repo/item/string             | Valid Items: name, description, homepage, private
     donothitenternow                  | Do Not Hit Enter Now -> DELETES ALL REPOS !!
+
 ```
 
 Base code:
