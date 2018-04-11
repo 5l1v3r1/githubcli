@@ -21,6 +21,7 @@ from commands.delete_all import *
 from commands.follow import *
 from commands.block import *
 from commands.get_issues import *
+from commands.get_commits import *
 
 api_url = 'https://api.github.com/'
 
@@ -61,6 +62,7 @@ info = '''
     get followers <username>          | Get all users who are following this user
     get following <username>          | Get all users who this user is following
     get issues <username> <repo>      | Show issues for this repo
+    get commits <username> <repo>     | Show all commits for this repo
     search <user>                     | Search for a user
     find <string>                     | Search for repositories by string
     follow <username>                 | Follow this user
@@ -79,6 +81,7 @@ info = '''
 
 def menu():
     try:
+
         while True:
             opt = raw_input('[github] > ')
 
@@ -146,6 +149,10 @@ def menu():
                 owner = opt.split(' ')[2]
                 repo = opt.split(' ')[3]
                 get_issues(api_url, user, token, owner, repo)
+            elif opt.startswith('get commits '):
+                username = opt.split(' ')[2]
+                repo = opt.split(' ')[3]
+                get_commits(api_url, token, username, repo)
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
@@ -160,8 +167,6 @@ Please login with your credentials below.
 
 Generate a token here: https://github.com/settings/tokens
 ''' )
-
-
 
 try:
     user = raw_input('Username: ')

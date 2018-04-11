@@ -30,7 +30,6 @@ def profile(api_url, user, token):
         for repo in login.json():
             repos.append(repo)
 
-
         print('''
         Username:      %s
         Name:          %s
