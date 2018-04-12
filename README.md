@@ -44,13 +44,12 @@ Commands:
     get following <username>          | Get all users who this user is following
     get issues <username> <repo>      | Show issues for this repo
     get commits <username> <repo>     | Show all commits for this repo
+    get files <username> <repo>       | List files in this repo
     search <user>                     | Search for a user
     find <string>                     | Search for repositories by string
-    follow <username>                 | Follow this user
-    unfollow <username>               | Unfollow this user
-    block <username>                  | Block this user
-    unblock <username>                | Unblock this user
-    blocks                            | Show all blocked users
+    follow/unfollow <username>        | Follow/unfollow this user
+    block/unblock <username>          | Block/unblock this user
+    blocks                            | List blocked users
     star/unstar <username> <repo>     | Star or unstar a users repo
 
     Your account:
