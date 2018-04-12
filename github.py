@@ -23,6 +23,7 @@ from commands.block import *
 from commands.get_issues import *
 from commands.get_commits import *
 from commands.star import *
+from commands.get_files import *
 
 api_url = 'https://api.github.com/'
 
@@ -64,13 +65,12 @@ info = '''
     get following <username>          | Get all users who this user is following
     get issues <username> <repo>      | Show issues for this repo
     get commits <username> <repo>     | Show all commits for this repo
+    get files <username> <repo>       | List files in this repo
     search <user>                     | Search for a user
     find <string>                     | Search for repositories by string
-    follow <username>                 | Follow this user
-    unfollow <username>               | Unfollow this user
-    block <username>                  | Block this user
-    unblock <username>                | Unblock this user
-    blocks                            | Show all blocked users
+    follow/unfollow <username>        | Follow/unfollow this user
+    block/unblock <username>          | Block/unblock this user
+    blocks                            | List blocked users
     star/unstar <username> <repo>     | Star or unstar a users repo
 
     \033[37mYour account:\033[0m
@@ -167,6 +167,10 @@ def menu():
                 username = opt.split(' ')[1]
                 repo = opt.split(' ')[2]
                 unstar(api_url, user, token, username, repo)
+            elif opt.startswith('get files '):
+                username = opt.split(' ')[2]
+                repo = opt.split(' ')[3]
+                get_files(api_url, user, token, username, repo)
             else:
                 print('\033[31m[ERROR]\033[0m Invalid option')
     except KeyboardInterrupt:
