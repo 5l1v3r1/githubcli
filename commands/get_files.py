@@ -24,3 +24,5 @@ def get_dir_files(api_url, user, token, username, repo, path):
         size = data[i]["size"]
         _type = data[i]["type"]
         print('%s %s %s' % (path.ljust(30), _type.ljust(20), size))
+        if _type == "dir":
+            return get_dir_files(api_url, user, token, username, repo, path) # Search all levels
