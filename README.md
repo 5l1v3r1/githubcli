@@ -1,5 +1,4 @@
-![alt text](http://leonvoerman.nl/coding/githubapi.gif)
-[![examples](http://leonvoerman.nl/coding/githubapi.png)](http://leonvoerman.nl/coding/githubapi.gif)
+![alt text](http://leonvoerman.nl/coding/githubapi.png)
 
 # github.py v0.1.6
 > Feel free to request more commands! 
