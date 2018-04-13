@@ -8,12 +8,15 @@ def get_starred(api_url, user, token, username):
 
     print('Starred repos by user %s\n' % username)
 
-    table = PrettyTable(['Name', 'Link', 'Description']) # Header
+    table = PrettyTable(['Name', 'Language', 'Stars', 'Link', 'Description']) # Header
     table.align = "l" # Text Align left
 
     if login.status_code == 200:
         for repo in login.json():
             name = repo["html_url"].split('/')[-1]
+            language = repo["language"]
+            stars = repo["stargazers_count"]
+
             if not repo["description"] == None:
                 description = repo["description"]
                 # Max characters for description
@@ -22,12 +25,15 @@ def get_starred(api_url, user, token, username):
             else:
                 description = None
 
-            result = name, repo["html_url"], description
-            table.add_row([result[0], result[1], result[2]])
+            result = name, language, stars, repo["html_url"], description
+            table.add_row([result[0], result[1], result[2], result[3], result[4]])
 
             c+=1
 
+        table.sortby = "Stars"
+        table.reversesort = True
         print(table)
+
         print('\033[32mFound %i results\033[0m' % int(c))
 
     else:
