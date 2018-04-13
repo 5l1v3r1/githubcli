@@ -1,4 +1,5 @@
 import requests, sys
+from prettytable import PrettyTable
 
 def get_starred(api_url, user, token, username):
     login = requests.get(api_url + 'users/' + username + '/starred', auth=(user, token))
@@ -7,8 +8,8 @@ def get_starred(api_url, user, token, username):
 
     print('Starred repos by user %s\n' % username)
 
-    header = "Name".ljust(35), "link".ljust(50), "Description"
-    print('\033[37m{0[0]} {0[1]} {0[2]}\033[0m'.format(header))
+    table = PrettyTable(['Name', 'Link', 'Description']) # Header
+    table.align = "l" # Text Align left
 
     if login.status_code == 200:
         for repo in login.json():
@@ -21,9 +22,12 @@ def get_starred(api_url, user, token, username):
             else:
                 description = None
 
-            print('%s %s %s' % (name.ljust(35), repo["html_url"].ljust(50), description))
+            result = name, repo["html_url"], description
+            table.add_row([result[0], result[1], result[2]])
 
             c+=1
+
+        print(table)
         print('\033[32mFound %i results\033[0m' % int(c))
 
     else:

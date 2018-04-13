@@ -1,26 +1,31 @@
 import requests
+from prettytable import PrettyTable
 
 def get_issues(api_url, user, token, owner, repo):
     login = requests.get(api_url + 'repos/' + owner + '/' + repo + '/issues', auth=(user, token))
 
     c = 0
 
-    header = "From".ljust(25), "State".ljust(15), "Title".ljust(40), "Link"
-    print('\033[37m{0[0]} {0[1]} {0[2]} {0[3]}\033[0m'.format(header))
+    table = PrettyTable(['From', 'State', 'Title', 'Link']) # Header
+    table.align = "l" # Text Align left
 
-    result = login.json()
+    data = login.json()
 
-    for i in range(len(result)):
+    for i in range(len(data)):
         # Grab data for each issue
-        uname = result[i]["user"]["login"]
-        state = result[i]["state"]
-        title = result[i]["title"]
-        url = result[i]["html_url"]
+        uname = data[i]["user"]["login"]
+        state = data[i]["state"]
+        title = data[i]["title"]
+        url = data[i]["html_url"]
 
         # Max title length is 70 characters
         if len(title) >= 35:
             title = title[:35] + '...'
 
-        print('%s %s %s %s ' % (uname.ljust(25), state.ljust(15), title.ljust(40), url))
+        result = uname, state, title, url
+        table.add_row([result[0], result[1], result[2], result[3]])
+
         c+=1
+
+    print(table)
     print('\033[32mDisplaying %i issues\033[0m' % int(c))

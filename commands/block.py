@@ -1,4 +1,5 @@
 import requests, sys, os
+from prettytable import PrettyTable
 
 def block(api_url, user, token, username):
     headers = {"Accept": "application/vnd.github.giant-sentry-fist-preview+json"}
@@ -28,7 +29,13 @@ def blocks(api_url, user, token):
     header = "Username".ljust(25), "Profile".ljust(35), "Site Admin"
     print('\033[34m{0[0]} {0[1]} {0[2]}\033[0m'.format(header))
 
+    table = PrettyTable(['Username', 'Profile', 'Site Admin']) # Header
+    table.align = "l" # Text Align left
+
     for i in range(len(data)):
-        print('%s %s %s' % (data[i]["login"].ljust(25), data[i]["html_url"].ljust(35), data[i]["site_admin"]))
+        result = data[i]["login"], data[i]["html_url"], data[i]["site_admin"]
+        table.add_row([result[0], result[1], result[2]])
         c+=1
+
+    print(table)
     print('\033[32mFound %i blocked users\033[0m' % int(c))
