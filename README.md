@@ -1,5 +1,3 @@
-![alt text](http://leonvoerman.nl/coding/githubapi.png)
-
 # github.py v0.1.6
 > Feel free to request more commands! 
 > I'll be happy to add them in the future.
