@@ -3,6 +3,7 @@
 # requests: http://docs.python-requests.org/en/master/user/quickstart/
 # API:      https://developer.github.com/v3/
 import requests, os, sys, time, getpass, readline, hashlib
+from auth import user, token
 
 # Import commands
 from commands.get_repos import *
@@ -84,9 +85,11 @@ info = '''
 def menu():
     try:
 
+        # Start Menu
         while True:
             opt = raw_input('[github] > ')
 
+            # Menu commands
             if opt == '?' or opt == 'help':
                 print(info)
             elif opt == 'exit' or opt == 'quit':
@@ -180,18 +183,24 @@ def menu():
         return menu()
 
 # Login script start here
-print('''
-Please login with your credentials below.
-
-Generate a token here: https://github.com/settings/tokens
-''' )
 
 try:
-    user = raw_input('Username: ')
-    token = getpass.getpass('Token: ')
-    # Enter your details below and has the 2 lines above for static values
-    #user = 'USERNAME'
-    #token = 'TOKEN'
+
+    if user == '' and token == '':
+        print('''
+        Please login with your credentials below.
+        Put your username and token in auth.py for static values
+
+        Generate a token here: https://github.com/settings/tokens
+
+        Please note that for some commands you'll need special permissions.
+
+        ''')
+
+        user = raw_input('Username: ')
+        token = getpass.getpass('Token: ')
+    else:
+        pass
 
 except KeyboardInterrupt:
     print('\n'); sys.exit(0)
