@@ -14,13 +14,13 @@ Installation:
 pip install -r required.txt
 ```
 
-Note the near bottom of github.py:
+Note auth.py:
 ```Python
-    user = raw_input('Username: ')
-    token = getpass.getpass('Token: ')
-    # Enter your details below and hash the 2 lines above for static values
-    #user = 'USERNAME'
-    #token = 'TOKEN'
+# Your username
+user = ''
+
+# Your access token
+token = ''
 ```
 
 Usage:
