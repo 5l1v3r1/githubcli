@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Link to docs:
 # requests: http://docs.python-requests.org/en/master/user/quickstart/
 # API:      https://developer.github.com/v3/
@@ -87,7 +87,7 @@ def menu():
 
         # Start Menu
         while True:
-            opt = raw_input('[github] > ')
+            opt = input('[github] > ')
 
             # Menu commands
             if opt == '?' or opt == 'help':
@@ -197,7 +197,7 @@ try:
 
         ''')
 
-        user = raw_input('Username: ')
+        user = input('Username: ')
         token = getpass.getpass('Token: ')
     else:
         pass

@@ -1,7 +1,8 @@
-import requests, sys
+import requests, sys, datetime
 from prettytable import PrettyTable
 
 def get_repos(api_url, user, token, username):
+    start = datetime.datetime.now()
     login = requests.get(api_url + 'users/' + username + '/repos', auth=(user, token))
 
     c = 0
@@ -32,6 +33,6 @@ def get_repos(api_url, user, token, username):
         table.reversesort = True
         print(table)
 
-        print('\033[32mFound %i results\033[0m' % int(c))
+        print('\033[32mFound %i results in %s\033[0m' % (int(c), datetime.datetime.now()-start))
     else:
         print('\033[31m[ERROR]\033[0m Cannot find any repos for this user')

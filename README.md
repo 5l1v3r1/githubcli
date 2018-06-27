@@ -1,5 +1,5 @@
 # github.py v0.1.6
-> Feel free to request more commands! 
+> Feel free to request more commands!
 > I'll be happy to add them in the future.
 
 ***
@@ -10,7 +10,15 @@ You'll need to login with your Github username and API token, which you can gene
 
 Installation:
 ```Shell
-pip install -r required.txt
+apt install python3-pip
+```
+
+```Shell
+pip3 install -r required.txt
+```
+```Shell
+chmod +x github.py
+./github.py
 ```
 
 Note auth.py:
@@ -24,7 +32,7 @@ token = ''
 
 Usage:
 ```Shell
-python github.py
+python3 github.py
 ```
 
 Features:
@@ -79,12 +87,12 @@ import requests, os, sys
 def command_name(api_url, user, token, key_in_dict):
 
     login = requests.get(api_url, auth=(user, token))
-    
+
     output = login.json()
-    
+
     print(output.keys()) # output all keys in dict
     data = output[key_in_dict] # Which will be "html_url" in this case.
-    
+
 # Usage:
 #command_name(api_url, user, token, "html_url")
 

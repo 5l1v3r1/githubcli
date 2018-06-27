@@ -1,7 +1,8 @@
-import requests, sys
+import requests, sys, datetime
 from prettytable import PrettyTable
 
 def find_repos(api_url, user, token, string):
+    start = datetime.datetime.now()
     login = requests.get(api_url + 'search/repositories?q=' + string, auth=(user,token))
 
     c = 0
@@ -31,4 +32,4 @@ def find_repos(api_url, user, token, string):
     table.reversesort = True
     print(table)
 
-    print('\033[32m\nDisplaying %i out of %i results\033[0m' % (int(c), data["total_count"]))
+    print('\033[32m\nDisplaying %i out of %i results in %s\033[0m' % (int(c), data["total_count"], datetime.datetime.now()-start))
